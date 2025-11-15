@@ -51,7 +51,7 @@ export const recognizeImage = async (msg, sendResponse?) => {
             model: (await chrome.storage.local.get('model'))?.model || DEFAULT_MODEL, // ваш
             input,
             reasoning: { effort: "low" },
-            //temperature: 0.2,
+            text: { verbosity: "low" },
             instructions: INSTRUCTION
         })
     })?.catch?.(e => {
