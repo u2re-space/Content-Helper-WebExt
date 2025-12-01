@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>New Tab</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        body {
+            display: flex;
+            align-items: stretch;
+            justify-content: stretch;
+        }
+
+        #ntp-frame {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <iframe
+        id="ntp-frame"
+        src="https://u2re.space/"
+        title="U2RE.space"
+        allow="accelerometer; autoplay; camera; clipboard-read; clipboard-write; display-capture; encrypted-media; fullscreen; geolocation; gyroscope; hid; idle-detection; keyboard-map; magnetometer; microphone; midi; payment; picture-in-picture; publickey-credentials-create; publickey-credentials-get; screen-wake-lock; serial; sync-xhr; usb; web-share; xr-spatial-tracking"
+        sandbox="allow-downloads allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation allow-top-navigation-by-user-activation allow-top-navigation-to-custom-protocols"
+        referrerpolicy="no-referrer-when-downgrade"
+        loading="eager"
+        importance="high"
+        credentialless
+    ></iframe>
+    <script type="module" src="./index.ts"></script>
+</body>
+</html>
+

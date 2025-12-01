@@ -1,0 +1,451 @@
+@layer webext-popup {
+
+    html, body {
+        /* layout */
+        & {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* visuals */
+        & {
+            border: none;
+            outline: none;
+        }
+    }
+
+    :where(*) {
+        /* box model */
+        & {
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* interaction */
+        & {
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-drag: none;
+            cursor: default;
+        }
+    }
+
+    html {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    body {
+        /* typography */
+        & {
+            font: 14px/1.4 system-ui;
+        }
+
+        /* sizing/layout */
+        & {
+            inline-size: max-content;
+            block-size: max-content;
+            min-inline-size: 330px;
+        }
+
+        /* background */
+        & {
+            background: transparent;
+            background-color: transparent;
+            background-image: none;
+        }
+    }
+
+    #app {
+        /* spacing */
+        & {
+            padding: 16px;
+            gap: 16px;
+        }
+
+        /* layout */
+        & {
+            display: flex;
+            flex-direction: column;
+            place-content: center;
+            place-items: center;
+        }
+
+        /* text */
+        & {
+            text-align: start;
+        }
+    }
+
+    h1 {
+        /* layout */
+        & {
+            display: flex;
+            flex-direction: row;
+            place-content: center;
+            place-items: center;
+        }
+
+        /* text overflow */
+        & {
+            text-wrap: nowrap;
+            word-break: keep-all;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* sizing */
+        & {
+            inline-size: stretch;
+            block-size: max-content;
+        }
+
+        /* typography */
+        & {
+            font: inherit;
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+        }
+    }
+
+    section {
+        /* layout */
+        & {
+            display: flex;
+            flex-direction: column;
+            place-content: center;
+            place-items: center;
+        }
+
+        /* spacing */
+        & {
+            gap: 8px;
+        }
+
+        /* sizing */
+        & {
+            inline-size: stretch;
+            block-size: max-content;
+        }
+    }
+
+    ul {
+        /* layout */
+        & {
+            display: grid;
+            grid-template-columns: [label] minmax(0px, max-content) [input] minmax(0px, 1fr) [checkbox] minmax(0px, max-content);
+            grid-auto-flow: row;
+            grid-auto-rows: max-content;
+            place-content: center;
+            place-items: center;
+        }
+
+        /* spacing/text */
+        & {
+            gap: 8px;
+            text-align: center;
+        }
+
+        /* sizing */
+        & {
+            inline-size: stretch;
+            block-size: max-content;
+        }
+    }
+
+    li {
+        /* spacing/text */
+        & {
+            gap: 4px;
+            text-align: center;
+        }
+
+        /* layout */
+        & {
+            display: grid;
+            flex-direction: row;
+            grid-column: 1 / -1;
+            grid-row: auto;
+            grid-template-columns: subgrid;
+            place-content: center;
+            place-items: center;
+        }
+
+        /* sizing */
+        & {
+            inline-size: stretch;
+            block-size: max-content;
+        }
+
+        // is has no 3rd child
+        &:not(:has(:nth-child(3))) {
+
+            // input should span 2 columns
+            input[type="url"],
+            input[type="password"],
+            input[type="text"] {
+                grid-column: 2 / 3 span;
+            }
+        }
+    }
+
+    label {
+        /* grid placement */
+        & {
+            grid-column: label;
+            grid-row: auto;
+        }
+
+        /* typography */
+        & {
+            font-size: 14px;
+            font-weight: 600;
+            text-wrap: nowrap;
+            word-break: keep-all;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            flex-basis: max-content;
+            text-align: start;
+        }
+
+        /* sizing/overflow */
+        & {
+            overflow: hidden;
+            min-inline-size: max-content;
+            inline-size: max-content;
+            block-size: max-content;
+            max-inline-size: stretch;
+        }
+    }
+
+    input[type="checkbox"] {
+        /* layout/placement */
+        & {
+            display: flex;
+            grid-column: checkbox;
+            grid-row: auto;
+            place-content: center;
+            place-items: center;
+        }
+
+        /* colors/visuals */
+        & {
+            background: #f5f5f5;
+            color: #000;
+            border: none;
+            outline: none;
+        }
+
+        /* typography/interaction */
+        & {
+            font: 14px/1.4 system-ui;
+            cursor: pointer;
+            text-align: start;
+        }
+
+        /* box model / sizing */
+        & {
+            box-sizing: border-box;
+            aspect-ratio: 1 / 1;
+            border-radius: 4px;
+            padding: 2px;
+            max-inline-size: stretch;
+            inline-size: 1.5rem;
+            block-size: 1.5rem;
+            line-height: 0;
+            overflow: hidden;
+            contain: strict;
+        }
+
+        /* native appearance */
+        & {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        /* pseudo-element for icon */
+        &::before {
+            content: "";
+            content: var(--for-show-icon, "");
+            line-height: 0;
+
+            display: flex;
+            flex-direction: row;
+            place-content: center;
+            place-items: center;
+
+            inline-size: stretch;
+            block-size: stretch;
+            max-inline-size: stretch;
+            max-block-size: stretch;
+            box-sizing: border-box;
+
+            object-fit: contain;
+            object-position: center;
+
+            contain-intrinsic-inline-size: 16px;
+            contain-intrinsic-block-size: 16px;
+
+            aspect-ratio: 1 / 1;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        &:checked {
+            /* checked colors */
+            & {
+                background: #000;
+                color: #fff;
+                fill: #fff;
+                stroke: #fff;
+            }
+
+            &::before {
+                content: "✓";
+                content: var(--for-hide-icon, "✓");
+            }
+        }
+
+        &:focus-visible {
+            box-shadow: 0 0 3px #0005;
+        }
+
+        &:focus {
+            box-shadow: 0 0 3px #0006;
+        }
+    }
+
+    input[type="url"],
+    input[type="password"],
+    input[type="text"] {
+        /* grid placement */
+        & {
+            grid-column: input;
+            grid-row: auto;
+        }
+
+        /* spacing / visuals */
+        & {
+            gap: 8px;
+            padding: 8px 8px;
+            border-radius: 4px;
+            border: none;
+            background: #f5f5f5;
+            color: #000;
+        }
+
+        /* sizing */
+        & {
+            inline-size: stretch;
+            block-size: max-content;
+        }
+
+        /* interaction */
+        & {
+            cursor: text;
+            user-select: text;
+            -webkit-user-select: text;
+            -webkit-user-drag: text;
+            pointer-events: auto;
+        }
+
+        /* layout */
+        & {
+            display: flex;
+            flex-direction: row;
+        }
+
+        /* text overflow */
+        & {
+            text-align: start;
+            text-wrap: nowrap;
+            word-break: keep-all;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* typography */
+        & {
+            font: 14px/1.4 system-ui;
+            font-family: monospace;
+            font-size: 10px;
+        }
+
+        & {
+            text-spacing-trim: normal;
+            text-spacing-trim: trim-start;
+            text-spacing-trim: trim-both;
+        }
+
+        &:focus-visible {
+            box-shadow: 0 0 3px #0005 inset;
+        }
+
+        &:focus {
+            box-shadow: 0 0 3px #0006 inset;
+        }
+    }
+
+    button {
+        /* spacing / box */
+        & {
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            gap: 8px;
+        }
+
+        /* colors / typography */
+        & {
+            background: #000;
+            color: #fff;
+            font: 14px/1.4 system-ui;
+            cursor: pointer;
+        }
+
+        /* layout */
+        & {
+            display: flex;
+            flex-direction: row;
+            place-content: center;
+            place-items: center;
+        }
+
+        /* text overflow */
+        & {
+            text-align: center;
+            text-wrap: nowrap;
+            word-break: keep-all;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* sizing */
+        & {
+            inline-size: max-content;
+            max-inline-size: stretch;
+            block-size: max-content;
+        }
+
+        &:focus-visible {
+            outline: 1px solid #fff5;
+            outline-offset: -1px;
+            box-shadow: 0 0 3px #0005;
+        }
+
+        &:focus {
+            outline: 1px solid #fff5;
+            outline-offset: -1px;
+            box-shadow: 0 0 3px #0006;
+        }
+    }
+}

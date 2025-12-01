@@ -1,7 +1,19 @@
 {
-    "include": ["./src/**/*", "copy/index.ts"],
-    "exclude": ["./test/**/*"],
+    "include": ["./src/**/*"],
+    "exclude": ["./test/**/*", "./dist/**/*"],
     "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "fest/core": ["../../modules/projects/core.ts/src/index.ts"],
+            "fest/dom": ["../../modules/projects/dom.ts/src/index.ts"],
+            "fest/object": ["../../modules/projects/object.ts/src/index.ts"],
+            "fest/lure": ["../../modules/projects/lur.e/src/index.ts"],
+            "fest/fl-ui": ["../../modules/projects/fl.ui/src/index.ts"],
+            "fest/veela": ["../../modules/projects/veela.css/src/index.ts"],
+            "fest/icon": ["../../modules/projects/icon.ts/src/index.ts"],
+            "fest/theme": ["../../modules/projects/fl.ui/src/theme/index.ts"]
+        },
+        "outDir": "./dist/",
         "target": "ESNext",
         "module": "ESNext",
         "lib": ["ESNext", "DOM", "WebWorker"],

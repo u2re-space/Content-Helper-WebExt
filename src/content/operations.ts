@@ -1,4 +1,4 @@
-import { copyAsHTML, copyAsMathML, copyAsMarkdown, copyAsTeX } from "../$utils$/convert";
+import { copyAsHTML, copyAsMathML, copyAsMarkdown, copyAsTeX } from "../utils/convert";
 
 //
 export const opMap = new Map([

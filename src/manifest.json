@@ -1,24 +1,17 @@
 {
     "manifest_version": 3,
-    "name": "Copy Math",
-    "description": "Copy (almost) any math",
+    "name": "CrossHelp",
+    "description": "Chrome extension for math copying, markdown viewing, and NTP",
     "version": "1.0.0",
     "action": {
-        "default_popup": "./src/$popup$/index.html"
+        "default_popup": "./src/popup/index.html",
+        "default_title": "CrossHelp"
+    },
+    "chrome_url_overrides": {
+        "newtab": "./src/newtab/index.html"
     },
     "background": {
-        "scripts": [
-            "./src/$private$/KEY.ts",
-            "./src/$runtime$/menu.ts",
-            "./src/$runtime$/capture.ts",
-            "./src/$runtime$/api.ts",
-            "./src/$runtime$/index.ts",
-            "./src/$utils$/core.ts",
-            "./src/$utils$/state.ts",
-            "./src/$offscreen$/copy.html",
-            "./src/$offscreen$/copy.js"
-        ],
-        "service_worker": "./src/$runtime$/index.ts",
+        "service_worker": "./src/runtime/index.ts",
         "type": "module"
     },
     "icons": {
@@ -29,24 +22,35 @@
         "storage",
         "activeTab",
         "scripting",
-        "background",
         "clipboardWrite",
         "clipboardRead",
         "contextMenus",
         "nativeMessaging",
         "tabCapture",
         "downloads",
-        "offscreen"
+        "offscreen",
+        "webNavigation"
     ],
     "content_security_policy": {
-        "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';",
-        "sandbox": "sandbox allow-scripts allow-forms allow-popups allow-modals clipboard-write clipboard-read; script-src 'self' 'wasm-unsafe-eval' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' 'wasm-eval' http://**/* https://**/* file://**/*; child-src 'self';"
+        "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; frame-src https://u2re.space https://*.u2re.space *;"
     },
-    "host_permissions": ["<all_urls>", "file://**/*", "file:///**/*"],
+    "host_permissions": [
+        "<all_urls>",
+        "file://**/*",
+        "file:///**/*",
+        "https://u2re.space/*",
+        "https://*.u2re.space/*"
+    ],
     "content_scripts": [{
-        "type": "module",
         "matches": ["<all_urls>", "file:///**/*", "file://**/*"],
-        "js": ["./src/$content$/index.ts"],
+        "js": ["./src/content/index.ts"],
         "run_at": "document_start"
+    }],
+    "web_accessible_resources": [{
+        "resources": [
+            "src/markdown/viewer.html",
+            "assets/*"
+        ],
+        "matches": ["<all_urls>"]
     }]
 }

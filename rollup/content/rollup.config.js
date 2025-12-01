@@ -44,7 +44,7 @@ export const rollupOptions = {
     plugins,
     treeshake: 'smallest',
     external: [],
-    input: "./src/$content$/index.ts",
+    input: "./src/content/index.ts",
     output: {
         minifyInternalExports: true,
         compact: true,

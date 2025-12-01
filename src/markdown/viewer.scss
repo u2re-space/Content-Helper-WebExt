@@ -1,0 +1,120 @@
+@page {
+    margin: 10mm 12mm 10mm 12mm;
+    font-size: 0.8em; size: A4;
+    font-family: "Noto Serif", "Noto Serif Display", "PT Serif", "IBM Plex Serif", "Literata", "Merriweather", "Source Serif 4", "Georgia", "Cambria", "Palatino Linotype", "Times New Roman", "Times", serif;
+
+    @bottom-center { content: counter(page); }
+    @top-right { content: "UC"; }
+}
+
+@media print {
+    hr:only-child { display: none !important; }
+    p, span { display: none !important; };
+}
+
+@layer md-main {
+    @media screen {
+        * {
+            font-smooth: always !important;
+            -moz-osx-font-smoothing: auto !important;
+            -webkit-font-smoothing: subpixel-antialiased !important;
+        }
+    }
+
+    @media print {
+        body, html { background-color: white !important; };
+        :host { background-color: transparent !important; };
+        p, span, a, ul, li, ol, strong, h1, h2 { filter: grayscale(100%); }
+        blockquote, blockquote p { filter: none; }
+
+        * {
+            font-smooth: never !important;
+            -webkit-font-smoothing: antialiased !important;
+            -webkit-font-smoothing: none !important;
+            -moz-osx-font-smoothing: grayscale !important;
+        }
+    }
+
+    :root {
+        & { color-scheme: light; };
+        @media (prefers-color-scheme: dark) { color-scheme: only dark; };
+        @media (prefers-color-scheme: light) { color-scheme: only light; };
+
+        &, * { box-sizing: border-box; }
+        & { background-color: light-dark(white, #101010) !important; };
+
+        body, & {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body {
+            @media (prefers-color-scheme: dark) { color-scheme: only dark; };
+            @media (prefers-color-scheme: light) { color-scheme: only light; };
+            & { background-color: transparent !important; };
+        }
+
+        head {
+            display: none !important;
+            content-visibility: hidden !important;
+            pointer-events: none !important;
+            interactivity: inert !important;
+            user-select: none !important;
+            touch-action: none !important;
+        }
+
+        md-view {
+            font-size: 1rem;
+            a, span, p { font-size: 1em; };
+        }
+    }
+
+    @media screen {
+        :root { overflow: hidden; font-size: 16px; };
+
+        body {
+            padding: 0px;
+            margin: 0px;
+            inline-size: 100%;
+            min-block-size: 100dvb;
+            block-size: max(100%, 100dvb);
+            max-block-size: 100dvb;
+            scrollbar-color: transparent transparent;
+        };
+
+        md-view {
+            display: block;
+            inline-size: stretch;
+            block-size: stretch;
+            pointer-events: auto;
+            min-block-size: 100dvb;
+            max-block-size: 100dvb;
+            background-color: transparent;
+            scrollbar-color: light-dark( black, white) transparent;
+            font-size: 1rem;
+        }
+    }
+
+    @media print {
+        :root {
+            container-type: inline-size;
+        }
+
+        body {
+            inline-size: 100%;
+            container-type: inline-size;
+            min-block-size: max-content;
+            contain: content layout;
+            scrollbar-color: transparent transparent;
+        }
+
+        md-view {
+            scrollbar-color: transparent transparent;
+            background-color: transparent;
+            container-type: inline-size;
+            display: contents;
+            contain: strict;
+        }
+    }
+}
+

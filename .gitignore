@@ -167,3 +167,12 @@ KEY.ts
 src/$private$/KEY.ts
 src/$private$
 src/$private$/*
+
+#
+private/
+private/*
+./private/
+./private/*
+src/private/KEY.ts
+src/private
+src/private/*

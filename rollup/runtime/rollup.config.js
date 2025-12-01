@@ -44,7 +44,7 @@ export const rollupOptions = {
     plugins: [...plugins],
     treeshake: 'smallest',
     external: [],
-    input: "./src/$runtime$/index.ts",
+    input: "./src/runtime/index.ts",
     output: {
         //preserveModules: true,
         minifyInternalExports: true,
